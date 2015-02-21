@@ -5,16 +5,34 @@ class window.App extends Backbone.Model
     @set 'deck', deck = new Deck()
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
-    (@get 'playerHand').on "change:bust", => @stand()
+    (@get 'playerHand').on "change:bust", => @assignWinner()
 
   stand: ->
     console.log('hi')
     @dealerTurn()
 
   dealerTurn: ->
-    # @get 'dealerHand'.play()
-    console.log('dealer turn')
+    @get 'dealerHand'.play()
+    # console.log('dealer turn')
 
+  assignWinner: ->
+    @playerBust() if ((@get 'playerHand').busted())
+
+  playerBust: ->
+    # $(".hit-button").html("<button>Hit</button>")
+    # alert('You bust!')
+    @endRound();
+
+  # dealerBust: ->
+
+  # playerWin: ->
+
+  # playerLose: ->
+
+  # push: ->
+
+  endRound: ->
+    @trigger('change:end')
 
 
 
@@ -30,4 +48,3 @@ class window.App extends Backbone.Model
   # playDealer: ->
   # play automatically
 
-  # assignWinner: ->

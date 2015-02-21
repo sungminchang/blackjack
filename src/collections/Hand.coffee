@@ -3,12 +3,16 @@ class window.Hand extends Backbone.Collection
 
   initialize: (array, @deck, @isDealer) ->
     @bust = false  #   JS this.bust = false;
+    return
 
   hit: ->
     @add(@deck.pop())
     @scores()
     if @bust
       @trigger('change:bust')
+
+  busted: ->
+    @bust
 
   stand: ->
     @trigger('change:stand')
