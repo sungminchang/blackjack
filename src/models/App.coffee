@@ -6,45 +6,19 @@ class window.App extends Backbone.Model
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
     (@get 'playerHand').on "change:bust", => @assignWinner()
+    (@get 'playerHand').on "change:stand", => @dealerTurn()
 
   stand: ->
-    console.log('hi')
+    console.log('koz')
+    @trigger('change:stand', 'koz')
     @dealerTurn()
 
   dealerTurn: ->
-    @get 'dealerHand'.play()
-    # console.log('dealer turn')
+    (@get 'dealerHand').autoPlay()
+    console.log('dealer turn')
 
   assignWinner: ->
-    @playerBust() if ((@get 'playerHand').busted())
-
-  playerBust: ->
-    # $(".hit-button").html("<button>Hit</button>")
-    # alert('You bust!')
-    @endRound();
-
-  # dealerBust: ->
-
-  # playerWin: ->
-
-  # playerLose: ->
-
-  # push: ->
-
-  endRound: ->
     @trigger('change:end')
 
 
-
-  # play: ->
-    # play players hand
-    # play dealer's hand
-    # compare hands and assign winner
-    #
-
-  # playPlayer: ->
-  # listen for hit, stand, check for bust
-
-  # playDealer: ->
-  # play automatically
 

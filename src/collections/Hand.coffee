@@ -14,11 +14,21 @@ class window.Hand extends Backbone.Collection
   busted: ->
     @bust
 
+  autoPlay: ->
+    console.log(@scores())
+
+    @map (card) ->
+      if !card.get('revealed') then card.flip()
+
+    console.log(@scores())
+    @hit() while @scores() < 17
+    console.log(@scores())
+
   stand: ->
     @trigger('change:stand')
 
   hasAce: -> @reduce (memo, card) ->
-    memo or card.get('value') is 1
+    memo or (card.get 'revealed' and card.get('value') is 1)
   , 0
 
   minScore: -> @reduce (score, card) ->
@@ -34,13 +44,13 @@ class window.Hand extends Backbone.Collection
 
     if @minScore() > 21
       @bust = true
-      return [@minScore()]
+      return @minScore()
 
     if !@hasAce()
-        return [@minScore()]
+        return @minScore()
     else if @minScore() + 10 <= 21
-      return [@minScore() + 10]
-    else return [@minScore()]
+      return @minScore() + 10
+    else return @minScore()
 
 
 
