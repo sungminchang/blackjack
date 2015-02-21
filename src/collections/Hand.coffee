@@ -6,10 +6,12 @@ class window.Hand extends Backbone.Collection
     return
 
   hit: ->
-    @add(@deck.pop())
+    cardToAdd = @deck.pop()
+    @add(cardToAdd)
     @scores()
     if @bust
       @trigger('change:bust')
+    cardToAdd
 
   busted: ->
     @bust
