@@ -13,9 +13,12 @@ class window.CardView extends Backbone.View
     @$el.children().detach()
     strObject =
       fileString: (@model.get 'rankName') + '-' + (@model.get 'suitName') + '.png'
-    console.log(strObject.fileString)
+
 
     @$el.addClass 'covered' unless @model.get 'revealed'
+
+    strObject.fileString = 'card-back.png' if !@model.get 'revealed'
+
     @$el.html @template strObject
 
     # if exposed show img

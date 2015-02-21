@@ -9,17 +9,15 @@ class window.AppView extends Backbone.View
   initialize: ->
     @render()
     @$('.hit-button') .on 'click', => @model.get('playerHand').hit()
-    # @$('.stand-button') .on 'click', => @model.get('playerHand').stand()
     @$('.stand-button') .on 'click', => @model.stand()
+
     @model.on 'change:end change:stand', (x) =>
       @unbindButtons()
-    # @model.on 'change', =>
       @$('.results-container').text(x)
 
 
 
   render: ->
-    console.log('new thing')
     @$el.children().detach()
     @$el.html @template()
     @$('.player-hand-container').html new HandView(collection: @model.get 'playerHand').el

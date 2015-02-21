@@ -20,9 +20,7 @@ class window.Hand extends Backbone.Collection
     @map (card) ->
       if !card.get('revealed') then card.flip()
 
-    console.log(@scores())
     @hit() while @scores() < 17
-    console.log(@scores())
 
   stand: ->
     @trigger('change:stand')
