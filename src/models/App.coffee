@@ -9,16 +9,22 @@ class window.App extends Backbone.Model
     (@get 'playerHand').on "change:stand", => @dealerTurn()
 
   stand: ->
-    console.log('koz')
-    @trigger('change:stand', 'koz')
+    @trigger('change:stand')
     @dealerTurn()
 
   dealerTurn: ->
     (@get 'dealerHand').autoPlay()
-    console.log('dealer turn')
+    @assignWinner()
 
   assignWinner: ->
-    @trigger('change:end')
+    messageString = ""
+    if (@get 'playerHand').busted() then messageString = "You bust! Dealer Wins"
+    else if (@get 'dealerHand').busted() then messageString = "Dealer busts. You win!"
+    else if (@get 'playerHand').scores() > (@get 'dealerHand').scores() then messageString = "You win!"
+    else if (@get 'playerHand').scores() < (@get 'dealerHand').scores() then messageString = "Dealer wins!"
+    else messageString = "Push. Dealer and player have the same score."
+
+    @trigger('change:end', messageString)
 
 
 
