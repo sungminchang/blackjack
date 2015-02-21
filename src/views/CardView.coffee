@@ -4,16 +4,19 @@ class window.CardView extends Backbone.View
   # tag name 'img'
   # template <%=  %>
 
-  template: _.template '<%= rankName %> of <%= suitName %>'
+  # template: _.template '<%= rankName %> of <%= suitName %>'
+  template: _.template '<img src="./img/cards/<%=fileString%> " >'
 
   initialize: -> @render()
 
   render: ->
     @$el.children().detach()
-    @$el.html @template @model.attributes
-    @$el.addClass 'covered' unless @model.get 'revealed'
+    strObject =
+      fileString: (@model.get 'rankName') + '-' + (@model.get 'suitName') + '.png'
+    console.log(strObject.fileString)
 
-    # add the imgs
+    @$el.addClass 'covered' unless @model.get 'revealed'
+    @$el.html @template strObject
 
     # if exposed show img
     # otherwise show card back

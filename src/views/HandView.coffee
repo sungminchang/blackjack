@@ -8,6 +8,7 @@ class window.HandView extends Backbone.View
     @render()
 
   render: ->
+    console.log('koz sungmin')
     @$el.children().detach()
     @$el.html @template @collection
     @$el.append @collection.map (card) ->
