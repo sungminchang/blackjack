@@ -8,7 +8,10 @@ class window.Hand extends Backbone.Collection
     @add(@deck.pop())
     @scores()
     if @bust
-      @trigger('change')
+      @trigger('change:bust')
+
+  stand: ->
+    @trigger('change:stand')
 
   hasAce: -> @reduce (memo, card) ->
     memo or card.get('value') is 1

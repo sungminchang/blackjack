@@ -5,35 +5,29 @@ class window.App extends Backbone.Model
     @set 'deck', deck = new Deck()
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
-    @get 'playerHand'
-    .on "change", ->
-      console.log('hi')
-
-
-      # playerHand.hit
-      # if playerHand.busted()
-      #   this.DealerTurn()
-    #@play()
-    #@playPlayer()
-    #@playDealer()
-    #@assignWinner()
-
-
+    (@get 'playerHand').on "change:bust", => @stand()
 
   stand: ->
-    @playDealer()
+    console.log('hi')
+    @dealerTurn()
+
+  dealerTurn: ->
+    # @get 'dealerHand'.play()
+    console.log('dealer turn')
 
 
-  play: ->
+
+
+  # play: ->
     # play players hand
     # play dealer's hand
     # compare hands and assign winner
     #
 
-  playPlayer: ->
+  # playPlayer: ->
   # listen for hit, stand, check for bust
 
-  playDealer: ->
+  # playDealer: ->
   # play automatically
 
-  assignWinner: ->
+  # assignWinner: ->
