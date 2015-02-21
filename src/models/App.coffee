@@ -6,9 +6,13 @@ class window.App extends Backbone.Model
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
     @get 'playerHand'
-    .on "change:bust", ->
+    .on "change", ->
       console.log('hi')
 
+
+      # playerHand.hit
+      # if playerHand.busted()
+      #   this.DealerTurn()
     #@play()
     #@playPlayer()
     #@playDealer()

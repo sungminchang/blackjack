@@ -9,6 +9,12 @@ class window.AppView extends Backbone.View
     'click .hit-button': -> @model.get('playerHand').hit()
     'click .stand-button': -> @model.get('playerHand').stand()
 
+    # 'click .stand-button': -> @model.hit()
+    # 'click .stand-button': -> @model.stand()
+
+    #events shouldn't be propagating to the Player hand
+    #not an associated model
+
   initialize: ->
     @render()
 

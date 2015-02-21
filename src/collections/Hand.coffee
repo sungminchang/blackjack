@@ -5,11 +5,10 @@ class window.Hand extends Backbone.Collection
     @bust = false  #   JS this.bust = false;
 
   hit: ->
-    console.log(@minScore())
     @add(@deck.pop())
-    console.log(@minScore())
     @scores()
-    console.log(@bust)
+    if @bust
+      @trigger('change')
 
   hasAce: -> @reduce (memo, card) ->
     memo or card.get('value') is 1
@@ -28,7 +27,6 @@ class window.Hand extends Backbone.Collection
 
     if @minScore() > 21
       @bust = true
-      debugger
       return [@minScore()]
 
     if !@hasAce()
