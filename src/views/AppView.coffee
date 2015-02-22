@@ -15,8 +15,6 @@ class window.AppView extends Backbone.View
       @unbindButtons()
       @$('.results-container').text(x)
 
-
-
   render: ->
     @$el.children().detach()
     @$el.html @template()

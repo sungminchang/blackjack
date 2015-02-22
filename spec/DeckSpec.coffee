@@ -45,7 +45,9 @@ describe 'deck', ->
       assert.strictEqual blackjackHand.first().get('suitName'), 'Spades'
       assert.strictEqual blackjackHand.last().get('rankName'), 'King'
       assert.strictEqual blackjackHand.last().get('suitName'), 'Clubs'
-      assert.strictEqual blackjackHand.last().get('value') +
-                         blackjackHand.first().get('value'), 21
+
+      # assert.strictEqual blackjackHand.last().get('value') +
+      #                    blackjackHand.first().get('value'), 21
+      assert.strictEqual blackjackHand.scores(), 21
 
 
