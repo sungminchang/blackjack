@@ -23,8 +23,8 @@ class window.Hand extends Backbone.Collection
 
     @hit() while @scores() < 17
 
-  stand: ->
-    @trigger('change:stand')
+  # stand: ->
+  #   @trigger('change:stand')
 
   hasAce: -> @reduce (memo, card) ->
     memo or (card.get 'revealed') and card.get('value') is 1

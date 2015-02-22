@@ -30,4 +30,7 @@ class window.App extends Backbone.Model
   newRound: ->
     @set 'playerHand', @get('deck').dealPlayer()
     @set 'dealerHand', @get('deck').dealDealer()
+    (@get 'playerHand').on "change:bust", => @assignWinner()
+    (@get 'playerHand').on "change:stand", => @dealerTurn()
+
     @trigger('newRound')
