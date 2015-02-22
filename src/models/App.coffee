@@ -27,5 +27,7 @@ class window.App extends Backbone.Model
 
     @trigger('change:end', messageString)
 
-
-
+  newRound: ->
+    @set 'playerHand', @get('deck').dealPlayer()
+    @set 'dealerHand', @get('deck').dealDealer()
+    @trigger('newRound')
